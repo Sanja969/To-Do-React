@@ -1,39 +1,50 @@
-import React, { Component } from "react"
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class InputTodo extends Component {
-  state = {
-    title: ""
-  };
-  onChange = e => {
+class InputTodo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+    };
+  }
+
+  handleInput = (event) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [event.target.name]: event.target.value,
     });
-  };
-  handleSubmit = e => {
-    e.preventDefault()
-    if (this.state.title.trim()) {
-      this.props.addTodoProps(this.state.title)
-      this.setState({
-        title: "",
-      })
-    } else {
-      alert("Please write item")
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { title } = this.state;
+    const { addItem } = this.props;
+    if (title.trim()) {
+      addItem(title);
+      this.setState({ title: '' });
     }
   }
+
   render() {
+    const { title } = this.state;
     return (
-    <form onSubmit={this.handleSubmit} className="form-container">
-      <input
-        type="text"
-        className="input-text"
-        placeholder="Add todo..."
-        value={this.state.title}
-        name="title"
-        onChange={this.onChange}
-      />
-      <button className="input-submit">Submit</button>
-    </form>
-    )
+      <form onSubmit={this.handleSubmit} className="form-container">
+        <input
+          type="text"
+          className="input-text"
+          name="title"
+          placeholder="Add to-do..."
+          value={title}
+          onChange={this.handleInput}
+        />
+        <input type="submit" className="input-submit" onClick={() => this.handleSubmit} />
+      </form>
+    );
   }
 }
-export default InputTodo
+
+InputTodo.propTypes = {
+  addItem: PropTypes.func.isRequired,
+};
+
+export default InputTodo;
