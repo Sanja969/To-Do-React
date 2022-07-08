@@ -13,7 +13,7 @@ class InputTodo extends React.Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -23,7 +23,7 @@ class InputTodo extends React.Component {
       addItem(title);
       this.setState({ title: '' });
     }
-  }
+  };
 
   render() {
     const { title } = this.state;

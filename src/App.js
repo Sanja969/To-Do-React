@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/To-Do-React/" element={<TodoContainer />} />
+          <Route path="/To-Do-React" element={<TodoContainer />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>

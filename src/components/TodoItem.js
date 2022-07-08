@@ -12,13 +12,13 @@ class TodoItem extends React.Component {
 
   editItem = () => {
     this.setState({ editing: true });
-  }
+  };
 
   handleEditDone = (event) => {
     if (event.key === 'Enter') {
       this.setState({ editing: false });
     }
-  }
+  };
 
   render() {
     const {
